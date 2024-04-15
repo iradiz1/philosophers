@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:23 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/14 16:20:22 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/15 11:55:42 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define MAX_PHILO 300
 
-typedef struct t_data t_data;
+typedef struct t_data	t_data;
 
 typedef struct s_fork
 {
@@ -32,10 +32,10 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-    int			id;
+	int			id;
 	bool		full;
-    long		meal_count;
-    long		last_meal_time;
+	long		meal_count;
+	long		last_meal_time;
 	t_fork		*l_fork;
 	t_fork		*r_fork;
 	pthread_t	thread_id;
@@ -55,10 +55,9 @@ typedef struct t_data
 	t_fork	*forks;
 }			t_data;
 
-
 int		ft_atoi(const char *str);
 int		ft_init(t_data *data, char **av);
-int 	start_sim(t_data *data);
+int		start_sim(t_data *data);
 void	destroy_all(t_data	*data);
 
 #endif

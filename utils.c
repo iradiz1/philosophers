@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/14 15:24:24 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/15 11:51:59 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(const char *str)
 void	destroy_all(t_data	*data)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < data->nbr_of_philos)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:29 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/14 16:10:27 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/15 11:54:14 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	ft_check_input(char **av)
 int	main(int ac, char **av)
 {
 	t_data	data;
-	
+
 	if (ac != 5 && ac != 6)
 		return (write(2, "invalid argument count\n", 23), 1);
 	if (ft_check_input(av))
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 		return (destroy_all(&data), 1);
 	if (start_sim(&data))
 		return (destroy_all(&data), 1);
-	
+
 	for(int i = 0; i < ft_atoi(av[1]); i++)
 		printf("fork id: %d\n", data.forks[i].fork_id);
 	destroy_all(&data);

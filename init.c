@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:45:16 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/14 15:15:42 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/15 11:53:30 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	init_forks(t_data *data)
 static int	init_data(t_data *data, char **av)
 {
 	struct timeval	time;
-	
+
 	data->nbr_of_philos = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]) * 1000;
 	data->time_to_eat = ft_atoi(av[3]) * 1000;
@@ -61,7 +61,7 @@ static int	init_data(t_data *data, char **av)
 	data->end_sim = false;
 	data->philos = malloc(sizeof(t_philo) * data->nbr_of_philos);
 	if (!data->philos)
-		return(write(2, "philos malloc failed\n", 21), 1);
+		return (write(2, "philos malloc failed\n", 21), 1);
 	data->forks = malloc(sizeof(t_fork) * data->nbr_of_philos);
 	if (!data->forks)
 		return (write(2, "forks malloc failed\n", 20), 1);
