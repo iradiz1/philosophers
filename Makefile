@@ -3,22 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+         #
+#    By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 11:49:26 by hzibari           #+#    #+#              #
-#    Updated: 2024/04/10 12:08:25 by hzibari          ###   ########.fr        #
+#    Updated: 2024/04/14 12:49:43 by halgordziba      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
-SRCS	=	utils.c
+SRCS	=	main.c \
+			utils.c \
+			init.c \
+			threads.c
 
 OFILES	=	$(SRCS:.c=.o)
 
 CC		=	cc
 RM		=	-rm -f
-CFLAGS	=	-Wall -Werror -Wextra
+# CFLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 

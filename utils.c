@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/10 12:08:10 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/14 15:24:24 by halgordziba      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,16 @@ int	ft_atoi(const char *str)
 	return (p * m);
 }
 
+void	destroy_all(t_data	*data)
+{
+	int	i;
+	
+	i = 0;
+	while (i < data->nbr_of_philos)
+	{
+		pthread_mutex_destroy(&data->forks[i].fork);
+		i++;
+	}
+	free(data->forks);
+	free(data->philos);
+}
