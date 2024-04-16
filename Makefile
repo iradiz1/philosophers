@@ -6,7 +6,7 @@
 #    By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 11:49:26 by hzibari           #+#    #+#              #
-#    Updated: 2024/04/14 12:49:43 by halgordziba      ###   ########.fr        #
+#    Updated: 2024/04/16 23:49:12 by halgordziba      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME	=	philo
 SRCS	=	main.c \
 			utils.c \
 			init.c \
-			threads.c
+			start_sim.c \
+			routines.c
 
 OFILES	=	$(SRCS:.c=.o)
 

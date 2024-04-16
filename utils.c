@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/15 11:51:59 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/16 23:46:31 by halgordziba      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ void	destroy_all(t_data	*data)
 	}
 	free(data->forks);
 	free(data->philos);
+}
+
+long	get_time(void)
+{
+	struct	timeval	time;
+		
+	if (gettimeofday(&time, NULL))
+		return (write(2, "gettimeifday failed\n", 20), 0);
+	return (time.tv_sec * 1000 + time.tv_sec / 1000);
 }
