@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/16 23:46:31 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/19 15:23:24 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_atoi(const char *str)
 		p = p * 10 + (str[i] - 48);
 		i++;
 	}
+	if (p * m > 2147483647 || p * m < -2147483648)
+		return (write(2, "atoi error\n", 11), 1);
 	return (p * m);
 }
 
@@ -53,9 +55,29 @@ void	destroy_all(t_data	*data)
 
 long	get_time(void)
 {
-	struct	timeval	time;
-		
+	struct timeval	time;
+
 	if (gettimeofday(&time, NULL))
 		return (write(2, "gettimeifday failed\n", 20), 0);
 	return (time.tv_sec * 1000 + time.tv_sec / 1000);
+}
+
+void	ft_usleep(long millisecounds)
+{
+	long	start;
+
+	start = get_time();
+	while ((get_time() - start) < millisecounds)
+		usleep(500);
+	return ;
+}
+
+void	print_msg(t_philo *philo, char *msg, int id)
+{
+	long	time;
+
+	pthread_mutex_lock(&philo->data->print_lock);
+	time = get_time() - philo->start_of_sim;
+	printf("%zu %d %s\n", time, id, msg);
+	pthread_mutex_unlock(&philo->data->print_lock);
 }

@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:29 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/15 11:54:14 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/17 12:23:18 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ int	main(int ac, char **av)
 		return (destroy_all(&data), 1);
 
 	for(int i = 0; i < ft_atoi(av[1]); i++)
-		printf("fork id: %d\n", data.forks[i].fork_id);
+	{
+		printf("philo: %d, first fork: %d, sec fork: %d\n", data.philos[i].id, data.philos[i].first_fork->fork_id, data.philos[i].sec_fork->fork_id);
+	}
 	destroy_all(&data);
 
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:23 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/16 21:50:06 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/19 15:26:13 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
+	pthread_t		thread_id;
 	int				id;
 	bool			full;
 	long			meal_count;
 	long			last_meal_time;
+	long			start_of_sim;
 	t_fork			*first_fork;
 	t_fork			*sec_fork;
-	pthread_t		thread_id;
 	pthread_mutex_t	eating_mtx;
+	pthread_mutex_t	write;
 	t_data			*data;
 }				t_philo;
 
@@ -50,9 +52,8 @@ typedef struct t_data
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			nbr_meals_limit;
-	long			start_of_sim;
 	bool			end_sim;
-	bool			all_ready;
+	pthread_mutex_t	print_lock;
 	pthread_mutex_t	ready_to_start;
 	t_philo			*philos;
 	t_fork			*forks;
@@ -64,5 +65,7 @@ int		start_sim(t_data *data);
 void	destroy_all(t_data	*data);
 void	*routine(void	*philo_struct);
 long	get_time(void);
+void	ft_usleep(long millisecounds);
+void	print_msg(t_philo *philo, char *msg, int id);
 
 #endif

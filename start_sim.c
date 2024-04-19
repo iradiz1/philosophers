@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_sim.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: halgordzibari <halgordzibari@student.42    +#+  +:+       +#+        */
+/*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:39:29 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/16 23:48:53 by halgordziba      ###   ########.fr       */
+/*   Updated: 2024/04/19 15:32:37 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	create_threads(t_data *data)
 	}
 	return (0);
 }
+
 static	int	join_threads(t_data	*data)
 {
 	int	i;
@@ -33,7 +34,7 @@ static	int	join_threads(t_data	*data)
 	i = 0;
 	while (i < data->nbr_of_philos)
 	{
-		if (pthread_join(data->philos[i].thread_id, NULL))
+		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
 			return (write(2, "pthread join failed\n", 20), 1);
 		i++;
 	}
@@ -47,11 +48,12 @@ int	start_sim(t_data *data)
 	else
 		if (create_threads(data))
 			return (1);
-	data->start_of_sim = get_time();
-	pthread_mutex_lock(&data->ready_to_start);
-	data->all_ready = true;
-	pthread_mutex_unlock(&data->ready_to_start);
+	//data->start_of_sim = get_time();
+	// pthread_mutex_lock(&data->ready_to_start);
+	// data->all_ready = true;
+	// pthread_mutex_unlock(&data->ready_to_start);
 	if (join_threads(data))
 		return (1);
+
 	return (0);
 }
