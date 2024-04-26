@@ -6,7 +6,7 @@
 #    By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 11:49:26 by hzibari           #+#    #+#              #
-#    Updated: 2024/04/19 11:56:06 by hzibari          ###   ########.fr        #
+#    Updated: 2024/04/26 13:31:31 by hzibari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,14 @@ SRCS	=	main.c \
 			utils.c \
 			init.c \
 			start_sim.c \
-			routines.c
+			routines.c \
+			monitor.c
 
 OFILES	=	$(SRCS:.c=.o)
 
 CC		=	cc
 RM		=	-rm -f
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=thread -pthread
+CFLAGS	=	-Wall -Werror -Wextra #-fsanitize=thread -pthread
 
 all: $(NAME)
 

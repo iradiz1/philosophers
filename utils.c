@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/19 15:23:24 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:30:42 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ long	get_time(void)
 
 	if (gettimeofday(&time, NULL))
 		return (write(2, "gettimeifday failed\n", 20), 0);
-	return (time.tv_sec * 1000 + time.tv_sec / 1000);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 void	ft_usleep(long millisecounds)
@@ -77,7 +77,12 @@ void	print_msg(t_philo *philo, char *msg, int id)
 	long	time;
 
 	pthread_mutex_lock(&philo->data->print_lock);
-	time = get_time() - philo->start_of_sim;
-	printf("%zu %d %s\n", time, id, msg);
+	if (!is_not_dead(philo))
+	{
+		time = get_time() - philo->data->start_of_sim;
+		printf("%zu %d %s\n", time, id, msg);
+		pthread_mutex_unlock(&philo->data->print_lock);
+		return ;
+	}
 	pthread_mutex_unlock(&philo->data->print_lock);
 }

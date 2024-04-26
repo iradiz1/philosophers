@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:39:29 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/19 15:32:37 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:14:08 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,20 @@ static	int	join_threads(t_data	*data)
 
 int	start_sim(t_data *data)
 {
+	pthread_t	moni;
+
 	if (data->nbr_meals_limit == 0)
 		return (0);
 	else
+	{
 		if (create_threads(data))
 			return (1);
-	//data->start_of_sim = get_time();
-	// pthread_mutex_lock(&data->ready_to_start);
-	// data->all_ready = true;
-	// pthread_mutex_unlock(&data->ready_to_start);
+		if (pthread_create(&moni, NULL, &monitor, data))
+			return (write(2, "pthread create failed\n", 22), 1);
+	}
 	if (join_threads(data))
 		return (1);
-
+	if (pthread_join(moni, NULL) != 0)
+		return (write(2, "pthread join failed\n", 20), 1);
 	return (0);
 }

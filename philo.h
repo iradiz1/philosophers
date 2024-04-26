@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:23 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/19 15:26:13 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/26 14:12:18 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
-# define MAX_PHILO 300
+# define MAX_PHILO 200
 
 typedef struct t_data	t_data;
 
@@ -37,11 +37,8 @@ typedef struct s_philo
 	bool			full;
 	long			meal_count;
 	long			last_meal_time;
-	long			start_of_sim;
 	t_fork			*first_fork;
 	t_fork			*sec_fork;
-	pthread_mutex_t	eating_mtx;
-	pthread_mutex_t	write;
 	t_data			*data;
 }				t_philo;
 
@@ -52,9 +49,11 @@ typedef struct t_data
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			nbr_meals_limit;
-	bool			end_sim;
+	long			start_of_sim;
+	bool			dead;
+	pthread_mutex_t	time_mtx;
 	pthread_mutex_t	print_lock;
-	pthread_mutex_t	ready_to_start;
+	pthread_mutex_t	dead_mtx;
 	t_philo			*philos;
 	t_fork			*forks;
 }					t_data;
@@ -67,5 +66,7 @@ void	*routine(void	*philo_struct);
 long	get_time(void);
 void	ft_usleep(long millisecounds);
 void	print_msg(t_philo *philo, char *msg, int id);
+void	*monitor(void	*data_struct);
+int		is_not_dead(t_philo *philo);
 
 #endif
