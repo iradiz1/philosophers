@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:49:23 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/26 14:12:18 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:24:34 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	ft_usleep(long millisecounds);
 void	print_msg(t_philo *philo, char *msg, int id);
 void	*monitor(void	*data_struct);
 int		is_not_dead(t_philo *philo);
+void	lone_philo(t_philo	*philo);
 
 #endif

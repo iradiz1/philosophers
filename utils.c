@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:06:35 by hzibari           #+#    #+#             */
-/*   Updated: 2024/04/26 13:30:42 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/29 12:40:58 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	destroy_all(t_data	*data)
 		pthread_mutex_destroy(&data->forks[i].fork);
 		i++;
 	}
+	pthread_mutex_destroy(&data->dead_mtx);
+	pthread_mutex_destroy(&data->print_lock);
+	pthread_mutex_destroy(&data->time_mtx);
 	free(data->forks);
 	free(data->philos);
 }

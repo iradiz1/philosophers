@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:45:16 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/26 13:48:00 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:30:12 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	init_philos(t_data	*data)
 			data->philos[i].sec_fork = &data->forks[(i + 1)
 				% data->nbr_of_philos];
 		}
-
 		data->philos[i].data = data;
 		i++;
 	}

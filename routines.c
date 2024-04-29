@@ -6,7 +6,7 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:22:06 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/26 13:48:08 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:18:47 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	*routine(void	*philo_struct)
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_struct;
+	if (philo->data->nbr_of_philos == 1)
+		lone_philo(philo);
 	if (philo->id % 2 == 0)
 		thinking(philo);
 	while (!is_not_dead(philo))
