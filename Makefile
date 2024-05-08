@@ -6,7 +6,7 @@
 #    By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 11:49:26 by hzibari           #+#    #+#              #
-#    Updated: 2024/04/29 13:29:40 by hzibari          ###   ########.fr        #
+#    Updated: 2024/05/08 11:52:46 by hzibari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OFILES	=	$(SRCS:.c=.o)
 
 CC		=	cc
 RM		=	-rm -f
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -pthread
 
 all: $(NAME)
 

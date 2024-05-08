@@ -6,24 +6,24 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 21:22:06 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/29 13:18:47 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:43:23 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_not_dead(t_philo *philo)
+void	lone_philo(t_philo	*philo)
 {
-	pthread_mutex_lock(&philo->data->dead_mtx);
-	if (philo->data->dead)
-		return (pthread_mutex_unlock(&philo->data->dead_mtx), 1);
-	pthread_mutex_unlock(&philo->data->dead_mtx);
-	return (0);
+	pthread_mutex_lock(&philo->first_fork->fork);
+	print_msg(philo, "has taken a fork", philo->id);
+	pthread_mutex_unlock(&philo->first_fork->fork);
+	ft_usleep(philo->data->time_to_die);
 }
 
 static	void	thinking(t_philo *philo)
 {
 	print_msg(philo, "is thinking", philo->id);
+	usleep(500);
 }
 
 static	void	sleeping(t_philo *philo)
@@ -60,15 +60,18 @@ void	*routine(void	*philo_struct)
 	philo = (t_philo *)philo_struct;
 	if (philo->data->nbr_of_philos == 1)
 		lone_philo(philo);
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 != 0)
 		thinking(philo);
 	while (!is_not_dead(philo))
 	{
 		if (philo->full)
 			break ;
-		eating(philo);
-		sleeping(philo);
-		thinking(philo);
+		if (!is_not_dead(philo) || !philo->full)
+			eating(philo);
+		if (!is_not_dead(philo) || !philo->full)
+			sleeping(philo);
+		if (!is_not_dead(philo) || !philo->full)
+			thinking(philo);
 	}
 	return (NULL);
 }

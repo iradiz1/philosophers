@@ -6,18 +6,22 @@
 /*   By: hzibari <hzibari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:39:29 by halgordziba       #+#    #+#             */
-/*   Updated: 2024/04/29 13:23:02 by hzibari          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:43:28 by hzibari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	lone_philo(t_philo	*philo)
+int	is_not_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->first_fork->fork);
-	print_msg(philo, "has taken a fork", philo->id);
-	pthread_mutex_unlock(&philo->first_fork->fork);
-	ft_usleep(philo->data->time_to_die);
+	pthread_mutex_lock(&philo->data->dead_mtx);
+	if (philo->data->dead)
+	{
+		pthread_mutex_unlock(&philo->data->dead_mtx);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->dead_mtx);
+	return (0);
 }
 
 static int	create_threads(t_data *data)
